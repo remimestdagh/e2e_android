@@ -7,11 +7,13 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class FullFlowTests {
     private static AndroidDriver driver;
@@ -79,6 +81,12 @@ public class FullFlowTests {
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bib");
         el4.click();
         Thread.sleep(2000);
+
+
+        MobileElement el6 = (MobileElement) driver.findElementById("com.example.faith:id/dagboek_list");
+        List<MobileElement> oldLijst = el6.findElements(By.id("com.example.faith:id/dagboek_card"));
+
+
         MobileElement el2 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
 
         new TouchAction(driver).longPress(LongPressOptions.longPressOptions()
@@ -87,6 +95,35 @@ public class FullFlowTests {
 
         MobileElement el3 = (MobileElement) driver.findElementById("com.example.faith:id/btVerwijderDagboek");
         el3.click();
+        MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/dagboek_list");
+        List<MobileElement> lijst = el5.findElements(By.id("com.example.faith:id/dagboek_card"));
+        Assert.assertEquals(lijst.size(),oldLijst.size()-1);
+
+    }
+    @Test
+    public void testDeleteHulpbron() throws InterruptedException {
+
+        Thread.sleep(2000);
+        MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bali");
+        el4.click();
+        Thread.sleep(2000);
+
+
+        MobileElement el6 = (MobileElement) driver.findElementById("com.example.faith:id/hulpbron_list");
+        List<MobileElement> oldLijst = el6.findElements(By.id("com.example.faith:id/hulpbron_CardView"));
+
+
+        MobileElement el2 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[2]/android.widget.LinearLayout");
+
+        new TouchAction(driver).longPress(LongPressOptions.longPressOptions()
+                .withElement (ElementOption.element (el2)))
+                .release().perform();
+
+        MobileElement el3 = (MobileElement) driver.findElementById("com.example.faith:id/btVerwijder");
+        el3.click();
+        MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/hulpbron_list");
+        List<MobileElement> lijst = el5.findElements(By.id("com.example.faith:id/hulpbron_CardView"));
+        Assert.assertEquals(lijst.size(),oldLijst.size()-1);
 
     }
 
