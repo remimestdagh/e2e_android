@@ -1,10 +1,13 @@
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.ElementOption;
 import io.appium.java_client.touch.offset.PointOption;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -60,6 +63,7 @@ public class FullFlowTests {
         MobileElement el8 = (MobileElement) driver.findElementById("com.example.faith:id/btSaveDagboek");
         el8.click();
         Thread.sleep(2000);
+        new TouchAction(driver).longPress(PointOption.point(500, 700)).moveTo(PointOption.point(500, 1000)).release().perform();
         MobileElement el9 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
         el9.click();
         Thread.sleep(2000);
@@ -67,6 +71,23 @@ public class FullFlowTests {
         MobileElement el11 = (MobileElement) driver.findElementById("com.example.faith:id/txtBeschrijving");
         Assert.assertEquals(el10.getAttribute("text"), "Dagboektest");
         Assert.assertEquals(el11.getAttribute("text"), "Dagboektest");
+    }
+    @Test
+    public void testDeleteDagboek() throws InterruptedException {
+
+        Thread.sleep(2000);
+        MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bib");
+        el4.click();
+        Thread.sleep(2000);
+        MobileElement el2 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
+
+        new TouchAction(driver).longPress(LongPressOptions.longPressOptions()
+                .withElement (ElementOption.element (el2)))
+                .release().perform();
+
+        MobileElement el3 = (MobileElement) driver.findElementById("com.example.faith:id/btVerwijderDagboek");
+        el3.click();
+
     }
 
     @Test
@@ -103,7 +124,7 @@ public class FullFlowTests {
         MobileElement el12 = (MobileElement) driver.findElementById("com.example.faith:id/btnSaveHulpbron");
         el12.click();
         Thread.sleep(2000);
-        new TouchAction(driver).press(PointOption.point(550, 200)).waitAction().moveTo(PointOption.point(550, 550)).release().perform();
+        new TouchAction(driver).longPress(PointOption.point(500, 700)).moveTo(PointOption.point(500, 1000)).release().perform();
         MobileElement el13 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
         el13.click();
         Thread.sleep(2000);
