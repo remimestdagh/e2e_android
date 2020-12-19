@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class AppiumSetup {
+public class FullFlowTests {
     private static AndroidDriver driver;
 
     @Before
@@ -107,15 +107,38 @@ public class AppiumSetup {
         MobileElement el13 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
         el13.click();
         Thread.sleep(2000);
-
-
-
         MobileElement el14 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[1]/androidx.cardview.widget.CardView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView");
         MobileElement el15 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout[1]/androidx.cardview.widget.CardView/android.widget.LinearLayout/android.widget.TextView");
         Assert.assertEquals(el14.getAttribute("text"), "testbron");
         Assert.assertEquals(el15.getAttribute("text"), "testbronbeschrijving");
+    }
+    @Test
+    public void testChat() throws InterruptedException {
+        Thread.sleep(2000);
+        MobileElement el1 = (MobileElement) driver.findElementById("com.example.faith:id/image_bar");
+        el1.click();
+        Thread.sleep(2000);
+        MobileElement el2 = (MobileElement) driver.findElementById("com.example.faith:id/layout_messageArea");
+        el2.click();
+        MobileElement el3 = (MobileElement) driver.findElementById("com.example.faith:id/txfEditBericht");
+        el3.sendKeys("test");
+        MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/btSendMessage");
+        el4.click();
+        MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/messages_list");
+        Assert.assertTrue(Boolean.parseBoolean(el5.getAttribute("displayed")));
+        Assert.assertTrue(Boolean.parseBoolean(el5.getAttribute("scrollable")));
 
+    }
+    @Test
+    public void testCinema() throws InterruptedException {
 
+        Thread.sleep(2000);
+        MobileElement el1 = (MobileElement) driver.findElementById("com.example.faith:id/image_cinema");
+        el1.click();
+        Thread.sleep(2000);
+        MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/medium_list");
+        Assert.assertTrue(Boolean.parseBoolean(el5.getAttribute("displayed")));
+        Assert.assertTrue(Boolean.parseBoolean(el5.getAttribute("scrollable")));
     }
 
 }
