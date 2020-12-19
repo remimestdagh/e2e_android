@@ -1,6 +1,7 @@
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -9,35 +10,22 @@ import java.net.URL;
 
 public class AppiumSetup {
     private static AndroidDriver driver;
-    public static void main(String[] args) {
-        try {
-            openApp();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-            System.out.println("Starting app failed");
-        }
-        try {
-            testDagboek();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
-    }
-
-    public static void openApp() throws MalformedURLException {
+    @Before
+    public void init() throws MalformedURLException {
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("deviceName","emulator-5554");
-        cap.setCapability("platformName","android");
-        cap.setCapability("appPackage","com.example.faith");
-        cap.setCapability("appActivity",".MainActivity");
-        cap.setCapability("noReset",true);
+        cap.setCapability("deviceName", "emulator-5554");
+        cap.setCapability("platformName", "android");
+        cap.setCapability("appPackage", "com.example.faith");
+        cap.setCapability("appActivity", ".MainActivity");
+        cap.setCapability("noReset", true);
         URL url = new URL("http://127.0.0.1:4723/wd/hub");
-        driver = new AndroidDriver(url,cap);
+        driver = new AndroidDriver(url, cap);
         System.out.println("App started");
-
     }
+
     @Test
-    private static void testDagboek() throws InterruptedException {
+    public void testDagboek() throws InterruptedException {
         MobileElement el1 = (MobileElement) driver.findElementById("com.example.faith:id/editTextTextEmailAddress");
         el1.click();
         el1.sendKeys("jef.seys.y0431@student.hogent.be");
@@ -69,10 +57,10 @@ public class AppiumSetup {
         MobileElement el9 = (MobileElement) driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout");
         el9.click();
         Thread.sleep(2000);
-        MobileElement el10 = (MobileElement) driver.findElementById("com.example.faith:id/txtNaam") ;
-        MobileElement el11 = (MobileElement) driver.findElementById("com.example.faith:id/txtBeschrijving") ;
-        Assert.assertEquals(el10.getAttribute("text"),"Dagboektest");
-        Assert.assertEquals(el11.getAttribute("text"),"Dagboektest");
+        MobileElement el10 = (MobileElement) driver.findElementById("com.example.faith:id/txtNaam");
+        MobileElement el11 = (MobileElement) driver.findElementById("com.example.faith:id/txtBeschrijving");
+        Assert.assertEquals(el10.getAttribute("text"), "Dagboektest");
+        Assert.assertEquals(el11.getAttribute("text"), "Dagboektest");
 
 
     }
