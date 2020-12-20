@@ -12,7 +12,7 @@ public class FailedLoginTest {
     private static AndroidDriver driver;
 
     @Test
-    public void init() throws MalformedURLException, InterruptedException {
+    public void loginGeslaagd() throws MalformedURLException, InterruptedException {
         DesiredCapabilities cap = new DesiredCapabilities();
         cap.setCapability("deviceName", "emulator-5554");
         cap.setCapability("platformName", "android");

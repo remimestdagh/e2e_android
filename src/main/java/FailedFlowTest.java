@@ -39,9 +39,8 @@ public class FailedFlowTest {
         System.out.println("logged in");
 
     }
-
     @Test
-    public void testDagboek() throws InterruptedException {
+    public void testDagboekVerkeerdeValidatie() throws InterruptedException {
 
         Thread.sleep(2000);
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bib");
@@ -64,9 +63,8 @@ public class FailedFlowTest {
         Assert.assertTrue(Boolean.parseBoolean(el8.getAttribute("displayed")));
 
     }
-
     @Test
-    public void testInfoBalie() throws InterruptedException {
+    public void testInfoBalieVerkeerdeValidatie() throws InterruptedException {
         Thread.sleep(2000);
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bali");
         el4.click();

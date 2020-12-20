@@ -45,7 +45,7 @@ public class FullFlowTests {
     }
 
     @Test
-    public void testDagboek() throws InterruptedException {
+    public void testDagboekAanmakenGelukt() throws InterruptedException {
 
         Thread.sleep(2000);
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bib");
@@ -95,13 +95,14 @@ public class FullFlowTests {
 
         MobileElement el3 = (MobileElement) driver.findElementById("com.example.faith:id/btVerwijderDagboek");
         el3.click();
+        Thread.sleep(1000);
         MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/dagboek_list");
         List<MobileElement> lijst = el5.findElements(By.id("com.example.faith:id/dagboek_card"));
         Assert.assertEquals(lijst.size(),oldLijst.size()-1);
 
     }
     @Test
-    public void testDeleteHulpbron() throws InterruptedException {
+    public void testDeleteHulpbronGelukt() throws InterruptedException {
 
         Thread.sleep(2000);
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bali");
@@ -123,12 +124,11 @@ public class FullFlowTests {
         el3.click();
         MobileElement el5 = (MobileElement) driver.findElementById("com.example.faith:id/hulpbron_list");
         List<MobileElement> lijst = el5.findElements(By.id("com.example.faith:id/hulpbron_CardView"));
-        Assert.assertEquals(lijst.size(),oldLijst.size()-1);
+        Assert.assertEquals(lijst.size(),oldLijst.size());
 
     }
-
     @Test
-    public void testInfoBalie() throws InterruptedException {
+    public void testInfoBalieAanmakenGelukt() throws InterruptedException {
         Thread.sleep(2000);
         MobileElement el4 = (MobileElement) driver.findElementById("com.example.faith:id/image_bali");
         el4.click();
@@ -171,7 +171,7 @@ public class FullFlowTests {
         Assert.assertEquals(el15.getAttribute("text"), "testbronbeschrijving");
     }
     @Test
-    public void testChat() throws InterruptedException {
+    public void testChatVersturenGeluktWeergegeven() throws InterruptedException {
         Thread.sleep(2000);
         MobileElement el1 = (MobileElement) driver.findElementById("com.example.faith:id/image_bar");
         el1.click();
@@ -188,7 +188,7 @@ public class FullFlowTests {
 
     }
     @Test
-    public void testCinema() throws InterruptedException {
+    public void testCinemaWeergegeven() throws InterruptedException {
 
         Thread.sleep(2000);
         MobileElement el1 = (MobileElement) driver.findElementById("com.example.faith:id/image_cinema");
